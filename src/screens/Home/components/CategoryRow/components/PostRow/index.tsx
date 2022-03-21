@@ -1,13 +1,24 @@
+import { useNavigation } from '@react-navigation/native'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useTheme } from 'styled-components'
 import utf8 from 'utf8'
-import RenderHtml from 'react-native-render-html'
+// import RenderHtml from 'react-native-render-html'
 
 import { Post } from '../../../../../../@types/interfaces'
 import api from '../../../../../../services/api'
+import { stripHTML } from '../../../../../../utils'
 
-import { Container, ImagePost, TitlePost, WrapperHeader, WrapperText } from './styles'
+import {
+  Container,
+  ContentPost,
+  ImagePost,
+  SeeMore,
+  TitlePost,
+  WrapperHeader,
+  WrapperText,
+} from './styles'
 
 interface PostRowProps {
   post: Post
@@ -15,7 +26,8 @@ interface PostRowProps {
 
 export const PostRow = ({ post }: PostRowProps) => {
   const theme = useTheme()
-  const [image, setImage] = useState('')
+  const navigation = useNavigation()
+  const [image, setImage] = useState<string | null>()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -42,12 +54,16 @@ export const PostRow = ({ post }: PostRowProps) => {
         <ActivityIndicator color={theme.COLORS.PRIMARY} size='large' />
       ) : (
         <>
-          <WrapperHeader>
-            <ImagePost source={{ uri: image }} />
-          </WrapperHeader>
+          <WrapperHeader>{image ? <ImagePost source={{ uri: image }} /> : null}</WrapperHeader>
           <WrapperText>
             <TitlePost>{utf8.encode(post.title.rendered).substring(0, 34) + '...'}</TitlePost>
-            <RenderHtml contentWidth={235 - 16} source={post.content.rendered} />
+            {/* <RenderHtml contentWidth={235 - 16} source={post.content.rendered} /> */}
+            <ContentPost>
+              {stripHTML(post.content.rendered.toString()).slice(0, 113)}...
+            </ContentPost>
+            <TouchableOpacity onPress={() => navigation.navigate('Detail', { id: post.id, image })}>
+              <SeeMore>Leia mais</SeeMore>
+            </TouchableOpacity>
           </WrapperText>
         </>
       )}

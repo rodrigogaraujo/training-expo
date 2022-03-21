@@ -13,6 +13,6 @@ export interface Post {
   status: string
   featured_media: string
   content: {
-    rendered: HTMLSource
+    rendered: string | HTMLSource
   }
 }

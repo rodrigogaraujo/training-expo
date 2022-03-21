@@ -8,7 +8,9 @@ export default {
 
     DARK: '#000000',
 
-    GRAY_TEXT: '#868686'
+    GRAY_TEXT: '#868686',
+
+    ORANGE_TEXT: '#FDA506'
   },
 
   FONTS: {

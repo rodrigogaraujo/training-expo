@@ -1,6 +1,5 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
-import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 
 export const Container = styled.View`
   width: 235px;
@@ -27,6 +26,22 @@ export const TitlePost = styled.Text`
   font-size: ${RFValue(17)}px;
   font-family: ${({theme}) => theme.FONTS.BOLD};
   text-align: left;
+`;
+
+export const ContentPost = styled.Text`
+  color: ${({theme}) => theme.COLORS.GRAY_TEXT};
+  font-size: ${RFValue(16)}px;
+  font-family: ${({theme}) => theme.FONTS.REGULAR};
+  text-align: left;
+  margin-top: ${RFValue(16)}px;
+`;
+
+export const SeeMore = styled.Text`
+  color: ${({theme}) => theme.COLORS.ORANGE_TEXT};
+  font-size: ${RFValue(16)}px;
+  font-family: ${({theme}) => theme.FONTS.BOLD};
+  text-align: left;
+  margin-top: ${RFValue(16)}px;
 `;
 
 export const ImagePost = styled.Image.attrs({

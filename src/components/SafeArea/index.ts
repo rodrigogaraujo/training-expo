@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 export const SafeArea = styled.View`
   flex: 1;
   background-color: ${({theme}) => theme.COLORS.BACKGROUND};
-  padding: 21px 15px;
+  padding: 21px 0;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
