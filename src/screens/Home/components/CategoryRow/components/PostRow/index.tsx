@@ -61,7 +61,11 @@ export const PostRow = ({ post }: PostRowProps) => {
             <ContentPost>
               {stripHTML(post.content.rendered.toString()).slice(0, 113)}...
             </ContentPost>
-            <TouchableOpacity onPress={() => navigation.navigate('Detail', { id: post.id, image })}>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('Detail', { id: post.id, image: image ? image : '' })
+              }
+            >
               <SeeMore>Leia mais</SeeMore>
             </TouchableOpacity>
           </WrapperText>
